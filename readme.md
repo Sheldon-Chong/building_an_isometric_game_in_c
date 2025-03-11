@@ -268,19 +268,36 @@ However, a property of isometric graphics is that it allows leeway in terms of s
 
 Two types of animation were applied to this project; Frame-by-frame animation and interpolation-based animation
 
-**Frame-by-Frame Animation**
+## **Frame-by-Frame Animation**
 
 In this method, every frame is individually drawn or created. When played in sequence, these frames create the illusion of movement. Below is an example of a sprite-sheet with frame-by-frame animation:
+
+<div align="center">
 
 ![images/df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a](images/0ad9d0cc_df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a.gif)
 
 By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](images/https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
 
-**Interpolation-Based Animation**
+
+</div>
+
+
+## **Interpolation-Based Animation**
 
 This method uses algorithms and calculations to smoothly transition an object or character from one position, scale, or rotation to another over time.
 
-![ball](images/17dbb22c_ball.gif)
+<div align="center">
+
+<img src="images/17dbb22c_ball.gif" width="500"/>
+
+From: https://github.com/franciscop/ola
+
+![ball](images/cd28515d_unnamed.gif)
+
+Source: CyberLegends Animations
+
+</div>
+
 
 This is interpolation in its most basic representation. Using calculations, the position of the circle is moved towards its destination smoothly. This method is commonly used when dealing with rigs or 3D models that consist of joints and connected parts.
 
@@ -289,6 +306,7 @@ In frame-by-frame animation, movement is straightforward: I simply alternate bet
 However, using this method of animation for moving troops moving toward the player poses a problem. A preset frame-by-frame approach would be impractical because of the sheer number of frames required for all possible movement directions. Instead, I needed a dynamic way to smoothly glide enemies toward their target.
 
 A common approach is to use what's known as **linear interpolation**, which uses the expression $A + (B - A) * t$ to calculate where a point in space should be between a start and end destination at a given time. However, there is a way to adapt this the linear interpolation function to be even simpler and easier to work with.
+
 
 <br/>
 
@@ -299,7 +317,7 @@ Instead of tracking time explicitly, we can use a function that incrementally mo
 ```c
 t_xy	interpolate(int value1, int value2, int slowness)
 {
-	return ((t_xy){(value1 + (value2 - value1) / slowness),
+	return (t_xy){(value1 + (value2 - value1) / slowness)};
 }
 ```
 
@@ -316,16 +334,18 @@ t_xy	interpolate(t_xy pos, t_xy pos2, int slowness)
 
 <br/>
 
-How This Works
+**How This Works**
 Unlike traditional interpolation that depends on a time parameter, this approach simply takes:
 - The current position
 - The target position
 - A slowness factor
 Each time the function is called, it returns a new position slightly closer to the target. To create movement, an object continuously updates its position using this function.
 
-Why This Method is Useful
+**Why This Method is Useful**
 - Easing Effect – Unlike standard linear interpolation, this approach naturally slows down as it approaches the target. This form of movement is more natural to the eyes.
 - No Time Tracking Required – Since the interpolation is based on the current position rather than a time factor, it works seamlessly for objects constantly chasing a moving target.
+
+Below is an example using this function to smoothly interpolate an enemy's position as it travels to the player.
 
 ```c
 #include <stdio.h>
@@ -350,6 +370,7 @@ int main() {
 
 	printf("Enemy starting at (%.2f, %.2f)\n", enemy.x, enemy.y);
 
+	// constantly reassigning its own value
 	while (distance(enemy, player) > 0.1) {
 		enemy = interpolate(enemy, player, slowness);
 		printf("Enemy at (%.2f, %.2f)\n", enemy.x, enemy.y);
