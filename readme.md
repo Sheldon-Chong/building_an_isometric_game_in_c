@@ -91,9 +91,9 @@ This implies that there are two sets of coordinates we need to care about: The t
 
 This is the formula to get a X position mapped onto a Isometric plane, given the X and Y coordinates of the player: 
 
-$ m $ represents the “slope”: how much a increase in $ X $ results in an increase $ Y $. 
+$m$ represents the “slope”: how much a increase in $X$ results in an increase $Y$. 
 
-$$ x\ =\ m\left(x_{1}+y_{1}\right) $$
+$$x\ =\ m\left(x_{1}+y_{1}\right)$$
 
 And the formula to get the Y position of the player
 
@@ -101,7 +101,7 @@ $$ y = \frac{\left(x_{1}-y_{1}\right)}{m} $$
 
 Combine both:
 
-$$ \left\{x,\ y\right\} = \left\{m\left(x_{1}+y_{1}\right), \frac{\left(x_{1}-y_{1}\right)}{m}\right\} $$
+$$(\{x, y\}) = (\{m(x_1 + y_1)), ((x_1 - y_1) / m\})$$
 
 With this formula, we can create the following function that will give us a new set of coordinates in an isometric plane based on a given set of coordinates.
 
@@ -133,15 +133,15 @@ t_xy iso_map(t_xy pos)
 <br/>
 
 Using [Desmos](images/https://www.desmos.com/calculator/gewxhbpklh), we can simulate the relationship live using this same formula.
-$ x_1 $ and $ y_1 $ are the true position, while the green dot represents the isometrically mapped position.
+$x_1$ and $y_1$ are the true position, while the green dot represents the isometrically mapped position.
 
 ![image](images/58fd72f4_image.png)
 
-- $ x = 1 $
+- $x = 1$
 
 	![image](images/8ca37819_image.png)
 
-- $ y = 1 $
+- $y = 1$
 
 	![image](images/a75cae77_image.png)
 
@@ -171,7 +171,7 @@ For example, lets start by drawing our first row of squares, with each square be
 <br>
 <img src="images/c53e604c_image.png" width="300"/>
 <br>
-<p>That was one row. Using the same steps, we then draw 2 more rows, but each row has a different starting y value. Just like $ x $, we increment the $ y $ by 20</p>
+<p>That was one row. Using the same steps, we then draw 2 more rows, but each row has a different starting y value. Just like $x$, we increment the $y$ by 20</p>
 
 <img src="images/d6783d5d_image.png" width="300"/>
 
@@ -183,9 +183,9 @@ Let’s apply the same logic but this time, render isometrically. To breakdown t
 
 | **X Value** | **Image** |
 |-------------|-----------|
-| $ x=0 $     | ![image](images/db866bb5_image.png) |
-| $ x=20 $    | ![image](images/1029af17_image.png) |
-| $ x=40 $    | ![image](images/bd6f2f25_image.png) |
+| $x=0$     | ![image](images/db866bb5_image.png) |
+| $x=20$    | ![image](images/1029af17_image.png) |
+| $x=40$    | ![image](images/bd6f2f25_image.png) |
 
 We have completed the first row. Next, we will increment the y, and draw the rows again
 
@@ -288,7 +288,7 @@ In frame-by-frame animation, movement is straightforward: I simply alternate bet
 
 However, using this method of animation for moving troops moving toward the player poses a problem. A preset frame-by-frame approach would be impractical because of the sheer number of frames required for all possible movement directions. Instead, I needed a dynamic way to smoothly glide enemies toward their target.
 
-A common approach is to use what's known as **linear interpolation**, which uses the expression $ A + (B - A) * t $ to calculate where a point in space should be between a start and end destination at a given time. However, there is a way to adapt this the linear interpolation function to be even simpler and easier to work with.
+A common approach is to use what's known as **linear interpolation**, which uses the expression $A + (B - A) * t$ to calculate where a point in space should be between a start and end destination at a given time. However, there is a way to adapt this the linear interpolation function to be even simpler and easier to work with.
 
 <br/>
 
@@ -421,7 +421,7 @@ To apply this to our game, we have to further process the positions of objects. 
 
 To covert the object to viewport coordinates, it's a simple matter of processing it using the following formula:
 
-$$ viewport\space pos = camera.pos - object.pos $$
+$$viewport\space pos = camera.pos - object.pos$$
 
 The final questions to answer is "where should our camera be positioned at?" Well obviously it should focus on the player. 
 
