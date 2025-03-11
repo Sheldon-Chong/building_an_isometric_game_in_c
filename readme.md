@@ -14,7 +14,7 @@ The conventional approach to this project is to make a flat, 2D grid-based game,
 
 ## My approach to so_long
 
-[Watch the video demonstration](so_long_demo.mp4)
+[Watch the video demonstration](images/so_long_demo.mp4)
 
 Having prior experience with game development, I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game for my project. 
 
@@ -38,14 +38,14 @@ This article serves as a walkthrough that will explain how I’ve gone about imp
 
 | **Side-Scroller** | **Fixed-screen** |
 |-------------------|------------------|
-| ![parallax-scrolling-sonic](e8fd4456_parallax-scrolling-sonic.gif) | ![Pacman](97a2d46c_Pacman.gif) |
+| ![parallax-scrolling-sonic](images/e8fd4456_parallax-scrolling-sonic.gif) | ![Pacman](images/97a2d46c_Pacman.gif) |
 | Camera follows player, as they traverse through the world | Camera stays in place, or the entire world is viewable without requiring camera to track player |
 
 <br/>
 
 | **Isometric rendering** | **Top-down/side-view rendering** |
 |-------------------------|----------------------------------|
-| ![image](120178a8_image.png) ![image](4e1bbc70_image.png) | ![image](301f722b_image.png) ![image](f691dab9_image.png) |
+| ![image](images/120178a8_image.png) ![image](images/4e1bbc70_image.png) | ![image](images/301f722b_image.png) ![image](images/f691dab9_image.png) |
 | Tiles are rendered diagonally (or diamond-shaped). Gives the illusion of depth and dimension. | Tiles can typically fit within a square, and are typically drawn from top-to-bottom, left-to-right |
 
 <br/>
@@ -54,7 +54,7 @@ This article serves as a walkthrough that will explain how I’ve gone about imp
 
 # 📦 Displaying a grid isometrically
 
-![Untitled](1cfbfcbf_Untitled.png)
+![Untitled](images/1cfbfcbf_Untitled.png)
 
 <br/>
 
@@ -66,15 +66,15 @@ There are several methods of rendering pixels isometrically. I will cover what I
 
 This concept is illustrated below
 
-| This is the X and Y axis of a flat 2D plane. In the middle is the player | ![Untitled](c625b4e7_Untitled.png) |
+| This is the X and Y axis of a flat 2D plane. In the middle is the player | ![Untitled](images/c625b4e7_Untitled.png) |
 |--------------|--------------------|
-| If the player were to increase their X value, they would move towards the right | ![Untitled](7004aaf0_Untitled.png) |
-| Now, this is the Isometric grid that you may be familiar with | ![Untitled](e23b0528_Untitled.png) |
-| Notice how it has a skewed version of the X and Y axis | ![Untitled](86419ad8_Untitled.png) |
-| This is the player at the center of the grid: | ![Untitled](4bb7aae7_Untitled.png) |
-| By increasing the player’s X, the player will move forward on the X axis | ![Untitled](62fb7618_Untitled.png) |
-| If we observe the player’s movement on the canvas, noticed how by increasing the X, the player moves somewhat diagonally. This contrasts how we saw the player move in a 2D grid when only its X position increased. In that instance, the player only move to the right | ![Untitled](c9703a07_Untitled.png) |
-| We can observe that by increasing the X value of the player, the Y increases by a certain amount as well. This means that we need to develop a formula correlates a player’s X with its Y. | ![Untitled](ea1a10ac_Untitled.png) |
+| If the player were to increase their X value, they would move towards the right | ![Untitled](images/7004aaf0_Untitled.png) |
+| Now, this is the Isometric grid that you may be familiar with | ![Untitled](images/e23b0528_Untitled.png) |
+| Notice how it has a skewed version of the X and Y axis | ![Untitled](images/86419ad8_Untitled.png) |
+| This is the player at the center of the grid: | ![Untitled](images/4bb7aae7_Untitled.png) |
+| By increasing the player’s X, the player will move forward on the X axis | ![Untitled](images/62fb7618_Untitled.png) |
+| If we observe the player’s movement on the canvas, noticed how by increasing the X, the player moves somewhat diagonally. This contrasts how we saw the player move in a 2D grid when only its X position increased. In that instance, the player only move to the right | ![Untitled](images/c9703a07_Untitled.png) |
+| We can observe that by increasing the X value of the player, the Y increases by a certain amount as well. This means that we need to develop a formula correlates a player’s X with its Y. | ![Untitled](images/ea1a10ac_Untitled.png) |
 
 Now, we need to find a way to put this theory into action. In a game, we have what I shall term “true coordinates”, which are is the variable that keeps track of the position an object, such as the player.
 
@@ -133,18 +133,18 @@ t_xy iso_map(t_xy pos)
 
 <br/>
 
-Using [Desmos](https://www.desmos.com/calculator/gewxhbpklh), we can simulate the relationship live using this same formula.
+Using [Desmos](images/https://www.desmos.com/calculator/gewxhbpklh), we can simulate the relationship live using this same formula.
 $ x_1 $ and $ y_1 $ are the true position, while the green dot represents the isometrically mapped position.
 
-![image](58fd72f4_image.png)
+![image](images/58fd72f4_image.png)
 
 - $ x = 1 $
 
-	![image](8ca37819_image.png)
+	![image](images/8ca37819_image.png)
 
 - $ y = 1 $
 
-	![image](a75cae77_image.png)
+	![image](images/a75cae77_image.png)
 
 <br/>
 
@@ -156,7 +156,7 @@ After understanding how to retrieve a position’s isometric counterpart, we may
 <div align="center">
 
 This is an example of a tile asset that I drew:
-<img src="9f34e38f_Untitled.png" width="200px"/>
+<img src="images/9f34e38f_Untitled.png" width="200px"/>
 
 </div>
 
@@ -166,17 +166,17 @@ Let’s say we want to render a 3x3 world. The basic way to go about it would be
 
 For example, lets start by drawing our first row of squares, with each square being 20px in width. This means we have to increment by 20 to draw at the start of the next square:
 
-<img src="c2e03ce0_image.png" width="300"/>
+<img src="images/c2e03ce0_image.png" width="300"/>
 <br>
-<img src="3143ae3a_image.png" width="300"/>
+<img src="images/3143ae3a_image.png" width="300"/>
 <br>
-<img src="c53e604c_image.png" width="300"/>
+<img src="images/c53e604c_image.png" width="300"/>
 <br>
 <p>That was one row. Using the same steps, we then draw 2 more rows, but each row has a different starting y value. Just like $ x $, we increment the $ y $ by 20</p>
 
-<img src="d6783d5d_image.png" width="300"/>
+<img src="images/d6783d5d_image.png" width="300"/>
 
-<img src="7e4056c2_image.png" width="300"/>
+<img src="images/7e4056c2_image.png" width="300"/>
 
 Our 3x3 world is complete. 
 
@@ -184,34 +184,34 @@ Let’s apply the same logic but this time, render isometrically. To breakdown t
 
 | **X Value** | **Image** |
 |-------------|-----------|
-| $ x=0 $     | ![image](db866bb5_image.png) |
-| $ x=20 $    | ![image](1029af17_image.png) |
-| $ x=40 $    | ![image](bd6f2f25_image.png) |
+| $ x=0 $     | ![image](images/db866bb5_image.png) |
+| $ x=20 $    | ![image](images/1029af17_image.png) |
+| $ x=40 $    | ![image](images/bd6f2f25_image.png) |
 
 We have completed the first row. Next, we will increment the y, and draw the rows again
 
 1. Cycle 2:
 
-	<img src="50b4f6f2_image.png" width="500"/>
+	<img src="images/50b4f6f2_image.png" width="500"/>
 
 	1. Cycle 3:
 
-	<img src="dccc6d51_image.png" width="500"/>
+	<img src="images/dccc6d51_image.png" width="500"/>
 
 	<br/>
 
 	With all positions mapped, we can then iterate. For each row, we start from the back instead of the front. Reversing the order of render is necessary to ensure that the images overlap properly.
 	<span style='color:gray'>(you can try for yourself what happens when it is rendered starting from </span><span style='color:gray'>`(0,0)`</span><span style='color:gray'> instead of the last position)</span>
 
-	<img src="2d1b7f7c_image.png" width="500"/>
+	<img src="images/2d1b7f7c_image.png" width="500"/>
 
-	<img src="c5f6a5d5_image.png" width="500"/>
+	<img src="images/c5f6a5d5_image.png" width="500"/>
 
-	<img src="526c2670_image.png" width="500"/>
+	<img src="images/526c2670_image.png" width="500"/>
 
-	<img src="2d69ca45_image.png" width="500"/>
+	<img src="images/2d69ca45_image.png" width="500"/>
 
-	<img src="82f7374d_image.png" width="500"/>
+	<img src="images/82f7374d_image.png" width="500"/>
 
 ---
 
@@ -219,39 +219,39 @@ We have completed the first row. Next, we will increment the y, and draw the row
 
 Now, we have our 3x3 world
 
-<div align="center"><img src="cbf8d737_image.png" alt="3x3 world" width="600"/></div>
+<div align="center"><img src="images/cbf8d737_image.png" alt="3x3 world" width="600"/></div>
 
 Of course, we may want to populate it with other objects. Positioning objects atop an existing world will require the help of a third coordinate, z.
 
-<div align="center"><img src="18e4e65f_image.png" alt="Objects on 3x3 world" width="600"/></td></div>
+<div align="center"><img src="images/18e4e65f_image.png" alt="Objects on 3x3 world" width="600"/></td></div>
 
 Once again, let’s refer to the way the x and y coordinate travel as they increase/decrease. When the x increases, the position travels towards the top right. When the y increases, the position travels to the bottom right. We will also introduce something known as the z coordinate. The z coordinate determines how high/low the object renders. Think of it as the true vertical axis (i.e. a substitute for the original y axis that no longer applies in an isometric world). The z coordinate is useful for rendering several layers of tiles. When the z coordinate increases, the position travels upwards.
 
-<div align="center"><img src="2c3c865f_image.png" alt="Z coordinate example" width="300"/></div>
-<div align="center"><img src="f28650a6_image.png" alt="Z coordinate example" width="300"/></div>
+<div align="center"><img src="images/2c3c865f_image.png" alt="Z coordinate example" width="300"/></div>
+<div align="center"><img src="images/f28650a6_image.png" alt="Z coordinate example" width="300"/></div>
 <p>(the z values here are only for demonstration purposes. They don’t represent the real height of the tiles)</p>
 
 When it comes to rendering the world, there is a certain order to rendering the tiles. This order involves starting at the lowest/bottom-most layer (e.g.) floor, and working your way to the top (walls, player, troops). 
 
-<img src="ebccf593_image.png" width="500"/>
+<img src="images/ebccf593_image.png" width="500"/>
 
 In my game, there are only two of such layers: The floor layer and the wall layer.
 
 1. Start by rendering first layer: Floor
 
-	<img src="b257792a_image.png" width="500"/>
+	<img src="images/b257792a_image.png" width="500"/>
 
 2. Increase Z value
 
 3. Render layer 2: Objects
 
-	<img src="2310900d_image.png" width="500"/>
+	<img src="images/2310900d_image.png" width="500"/>
 
 Typically 2 layers is the easiest to work with. Having more layers introduces some additional complexities, however it is outside the scope of this article.
 
 ## 🎮 Isometric Assets
 
-<img src="0249cd24_image.png" width="500"/>
+<img src="images/0249cd24_image.png" width="500"/>
 
 <br/>
 
@@ -269,32 +269,21 @@ However, a property of isometric graphics is that it allows leeway in terms of s
 
 Two types of animation were applied to this project; Frame-by-frame animation and interpolation-based animation
 
-<br/>
-
-keyframe animation??
-
-
 **Frame-by-Frame Animation**
 
 In this method, every frame is individually drawn or created. When played in sequence, these frames create the illusion of movement. Below is an example of a sprite-sheet with frame-by-frame animation:
 
-![df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a](0ad9d0cc_df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a.gif)
+![images/df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a](images/0ad9d0cc_df7r99a-dd980548-1e81-4316-8d7d-d962f7d38b0a.gif)
 
-By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
+By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](images/https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
 
 **Interpolation-Based Animation**
 
 This method uses algorithms and calculations to smoothly transition an object or character from one position, scale, or rotation to another over time.
 
-![ball](17dbb22c_ball.gif)
+![ball](images/17dbb22c_ball.gif)
 
 This is interpolation in its most basic representation. Using calculations, the position of the circle is moved towards its destination smoothly. This method is commonly used when dealing with rigs or 3D models that consist of joints and connected parts.
-
-![unnamed](cd28515d_unnamed.gif)
-
-![da1ap70-592dc9b9-5b2e-43a5-9040-d436275a5652](afe767d7_da1ap70-592dc9b9-5b2e-43a5-9040-d436275a5652.gif)
-
-By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
 
 In frame-by-frame animation, movement is straightforward: I simply alternate between two frames every second.
 
@@ -391,20 +380,20 @@ This offset is determined by the camera, and the coordinates where the world is 
 To further understand, let's refer to this game world:   
 
 <div align="center">
-	<img src="Frame 34.png" alt="alt text" width="500"/>
+	<img src="images/Frame 34.png" alt="alt text" width="500"/>
 </div>
 
 <br>
 Now I will introduce the camera. The camera captures a section of the screen. This section is whats shown in the viewport. Currently, the camera and the flower are located at (0, 0), hence both their centerpoints intersect.
 
 <div align="center">
-	<img src="Frame 46.png" alt="alt text" width="500"/>
+	<img src="images/Frame 46.png" alt="alt text" width="500"/>
 </div>
 
 <br>
 The camera moves to the right. Notice that in the viewport, the flower is now at the left.
 <div align="center">
-	<img src="Frame 43.png" alt="alt text" width="500"/>
+	<img src="images/Frame 43.png" alt="alt text" width="500"/>
 </div>
 
 This is a demonstration of the inverse relationship between the camera's position, and that of the objects in the world. The same applies to the vertical axis as well.
@@ -419,14 +408,14 @@ Let's say we render four objects, at the following positions:
 
 
 <div align="center">
-<img src="Frame 36.png" alt="alt text" width="500"/>
+<img src="images/Frame 36.png" alt="alt text" width="500"/>
 </div>
 
 <br>
 
 By moving the camera right, the world moves left. Hence, if the camera moves by 300 pixels to the right, all images should be rendered 300 pixels to the left.
 <div align="center">
-<img src="Frame 47.png" alt="alt text" width="500"/>
+<img src="images/Frame 47.png" alt="alt text" width="500"/>
 </div>
 
 To apply this to our game, we have to further process the positions of objects. We need to convert them to what I will term "viewport coordinates".
@@ -438,7 +427,7 @@ $$ viewport\space pos = camera.pos - object.pos $$
 The final questions to answer is "where should our camera be positioned at?" Well obviously it should focus on the player. 
 
 <div align="center">
-	<img src="Frame 44.png" alt="alt text" width="500"/>
+	<img src="images/Frame 44.png" alt="alt text" width="500"/>
 </div>
 
 At each game update, we may set the camera position to that of the player's, hence the player will always be at the center of the viewport. This makes it so that the player is central to the game, whilst the world around it moves.
@@ -453,15 +442,22 @@ camera_pos = interpolate(camera_pos, player_pos, 4);
 This will cause the camera to glide to the player gracefully.
 
 <div align="center">
-	<img src="Frame 45.png" alt="alt text" width="500"/>
+	<img src="images/Frame 45.png" alt="alt text" width="500"/>
 </div>
 
-# conclusion
+# Summary
 
+1. We keep track of the position of all objects in the world via a structs. These are their "true positions"
+2. Each object's position can mapped isometrically by giving a relationship between the x and y, utilizing the iso_map function. This produces their isometric positions
+3. We can introduce a camera to make the game feel more dynamic. In reality, the camera serves as a value that all objects in the world must be offseted by. This produces their viewport positions
+
+<div align="center">
+	<img src="images/Frame 48 (1)-1.png" alt="alt text" width="500"/>
+</div>
 
 ---
 
-![image](caddda34_image.png)
+![image](images/caddda34_image.png)
 
 [//]: # (link_preview is not supported)
 
