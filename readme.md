@@ -101,12 +101,11 @@ $$ y = \frac{\left(x_{1}-y_{1}\right)}{m} $$
 
 Combine both:
 
-$$ \left\{x,\ y\right\}\ =\ \left\{m\left(x_{1}+y_{1}\right), \frac{\left(x_{1}-y_{1}\right)}{m}\right\} $$
+$$ \left\{x,\ y\right\} = \left\{m\left(x_{1}+y_{1}\right), \frac{\left(x_{1}-y_{1}\right)}{m}\right\} $$
 
 With this formula, we can create the following function that will give us a new set of coordinates in an isometric plane based on a given set of coordinates.
 
 (No struct):
-
 
 ```c
 void iso_map(int x, int y)
@@ -118,8 +117,8 @@ void iso_map(int x, int y)
 }
 ```
 
-(Using a struct to group coordinates):
 
+(Using a struct to group coordinates):
 
 ```c
 t_xy iso_map(t_xy pos)
