@@ -1,37 +1,22 @@
 **By Sheldon Chong**
-11.3.2025
-
-
+11 March 2025
 
 # Building an Isometric Game in C
 
 ## Introduction: What is so_long?
 
-so_long is one of the earlier projects in 42’s Core Program. The objective of so_long is to create a 2D, interactive top-down game, using an barebones C graphics library called MiniLibX.
+so_long is one of game-development projects in 42’s Core Program. The objective of so_long is to create a 2D, interactive top-down game, using a lightweight C graphics library called MiniLibX.
 
 - Players must use keys to move their player around and collect collectibles, to make their way towards the exit. 
 - As a bonus, players may also incorporate various elements such as animation, enemies and enemy AI, amongst other things.
 
 The conventional approach to this project is to make a flat, 2D grid-based game, as I’ve observed from many cadets who worked on the same project.
 
-![so_long_demonstration](3d631e64_so_long_demonstration.gif)
-[https://github.com/JCluzet/so_long](https://github.com/JCluzet/so_long)
-
-<br>
-
-![129287696-f7064eeb-1a90-4e33-bde7-58ad8f239051](1006c391_129287696-f7064eeb-1a90-4e33-bde7-58ad8f239051.gif)
-[https://github.com/andersonhsporto/ft-so_long](https://github.com/andersonhsporto/ft-so_long)
-
-
-Interestingly, the requirements for this project were pretty loose. I used it as the green flag to work on it using an unconventional approach…
-
----
-
-# My approach to so_long
+## My approach to so_long
 
 [Watch the video demonstration](so_long_demo.mp4)
 
-I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game. 
+Having prior experience with game development, I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game for my project. 
 
 The game features the following:
 
@@ -39,7 +24,7 @@ The game features the following:
 
 	- Enemies remain idle and look around until a player falls within an enemy’s line of sight. In such situations, they will become aggravated, and chase after the player.
 
-- **A camera** that glides gracefully towards the player, keeping it in focus. This illusion was created by rendering the pixels using an offset value and basic smoothing. 
+- **A camera** that smoothly follows the player alongside the position of the mouse.
 
 - **Isometric appearance:** I designed assets in a form which connects seamlessly along with other tiles on a diagonally angled axis.
 
@@ -49,7 +34,7 @@ This article serves as a walkthrough that will explain how I’ve gone about imp
 
 ---
 
-# Basic term definitions and distinctions for 2D games
+## Basic term definitions and distinctions for 2D games (online examples)
 
 | **Side-Scroller** | **Fixed-screen** |
 |-------------------|------------------|
@@ -81,10 +66,9 @@ There are several methods of rendering pixels isometrically. I will cover what I
 
 This concept is illustrated below
 
-| **text** | **image** |
-|--------------|--------------------|
 | This is the X and Y axis of a flat 2D plane. In the middle is the player | ![Untitled](c625b4e7_Untitled.png) |
-| If the player were to increase their X value, they would move towards the right, like so | ![Untitled](7004aaf0_Untitled.png) |
+|--------------|--------------------|
+| If the player were to increase their X value, they would move towards the right | ![Untitled](7004aaf0_Untitled.png) |
 | Now, this is the Isometric grid that you may be familiar with | ![Untitled](e23b0528_Untitled.png) |
 | Notice how it has a skewed version of the X and Y axis | ![Untitled](86419ad8_Untitled.png) |
 | This is the player at the center of the grid: | ![Untitled](4bb7aae7_Untitled.png) |
@@ -103,7 +87,7 @@ This implies that there are two sets of coordinates we need to care about: The t
 
 <br/>
 
-💡 **Basic isometric mapping formula**
+## 💡 **Basic isometric mapping formula**
 
 This is the formula to get a X position mapped onto a Isometric plane, given the X and Y coordinates of the player: 
 
@@ -149,7 +133,7 @@ t_xy iso_map(t_xy pos)
 
 <br/>
 
-💡 Using [Desmos](https://www.desmos.com/calculator/gewxhbpklh), we can simulate the relationship live using this same formula.
+Using [Desmos](https://www.desmos.com/calculator/gewxhbpklh), we can simulate the relationship live using this same formula.
 $ x_1 $ and $ y_1 $ are the true position, while the green dot represents the isometrically mapped position.
 
 ![image](58fd72f4_image.png)
@@ -164,7 +148,7 @@ $ x_1 $ and $ y_1 $ are the true position, while the green dot represents the is
 
 <br/>
 
-### Tiling isometrically
+## 🧊 Tiling isometrically
 
 After understanding how to retrieve a position’s isometric counterpart, we may then use this logic to lay out each tile and form the world.
 
@@ -233,12 +217,19 @@ We have completed the first row. Next, we will increment the y, and draw the row
 
 <br/>
 
-Now, we have our 3x3 world | ![image](cbf8d737_image.png) |
-|------------------|-----------|
-Of course, we may want to populate it with other objects. Positioning objects atop an existing world will require the help of a third coordinate, $ Z $. | ![image](18e4e65f_image.png) |
-Once again, let’s refer to the way the x and y coordinate travel as they increase/decrease. When the x increases, the position travels towards the top right. When the y increases, the position travels to the bottom right. We will also introduce something known as the z coordinate. The Z coordinate determines how high/low the object renders. Think of it as the true vertical axis (i.e. a substitute for the original Y axis that no longer applies in an isometric world). The Z coordinate is useful for rendering several layers of tiles. When the z coordinate increases, the position travels upwards. | ![image](2c3c865f_image.png) ![image](f28650a6_image.png) (the Z values here are only for demonstration purposes. They don’t represent the real height of the tiles) |
+Now, we have our 3x3 world
 
-<br/>
+<div align="center"><img src="cbf8d737_image.png" alt="3x3 world" width="600"/></div>
+
+Of course, we may want to populate it with other objects. Positioning objects atop an existing world will require the help of a third coordinate, z.
+
+<div align="center"><img src="18e4e65f_image.png" alt="Objects on 3x3 world" width="600"/></td></div>
+
+Once again, let’s refer to the way the x and y coordinate travel as they increase/decrease. When the x increases, the position travels towards the top right. When the y increases, the position travels to the bottom right. We will also introduce something known as the z coordinate. The z coordinate determines how high/low the object renders. Think of it as the true vertical axis (i.e. a substitute for the original y axis that no longer applies in an isometric world). The z coordinate is useful for rendering several layers of tiles. When the z coordinate increases, the position travels upwards.
+
+<div align="center"><img src="2c3c865f_image.png" alt="Z coordinate example" width="300"/></div>
+<div align="center"><img src="f28650a6_image.png" alt="Z coordinate example" width="300"/></div>
+<p>(the z values here are only for demonstration purposes. They don’t represent the real height of the tiles)</p>
 
 When it comes to rendering the world, there is a certain order to rendering the tiles. This order involves starting at the lowest/bottom-most layer (e.g.) floor, and working your way to the top (walls, player, troops). 
 
@@ -258,7 +249,7 @@ In my game, there are only two of such layers: The floor layer and the wall laye
 
 Typically 2 layers is the easiest to work with. Having more layers introduces some additional complexities, however it is outside the scope of this article.
 
-# Isometric Assets
+## 🎮 Isometric Assets
 
 <img src="0249cd24_image.png" width="500"/>
 
@@ -274,7 +265,7 @@ However, a property of isometric graphics is that it allows leeway in terms of s
 
 <br/>
 
-## 🏃 Animations
+# 🏃 Animations
 
 Two types of animation were applied to this project; Frame-by-frame animation and interpolation-based animation
 
@@ -305,28 +296,17 @@ This is interpolation in its most basic representation. Using calculations, the 
 
 By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
 
-When it came to frame-by-frame animation, things were fairly straightforward, as I simply had 2 frames to alternate between every second.
+In frame-by-frame animation, movement is straightforward: I simply alternate between two frames every second.
 
-However, when it came to making the enemy troops move towards the player, having a frame-by-frame preset animation would be unsuitable, as there are simply too many frames and possible directions the enemy can move in.
+However, using this method of animation for moving troops moving toward the player poses a problem. A preset frame-by-frame approach would be impractical because of the sheer number of frames required for all possible movement directions. Instead, I needed a dynamic way to smoothly glide enemies toward their target.
 
-<br/>
-
-The enemy should glide towards the player. 
-
-There were several approaches to animated movement in my game; For example, I could use **linear interpolation**, which uses the expression $ A + (B - A) * t $ to calculate where a point in space should be between a start and end destination at a given time. 
-
-However, lerping has 2 major issues:
-
-- using lerping for animation is as suggested by its name — linear — meaning a position travels at a fixed speed, hence it tends to look stiff. 
-
-- Furthermore, it also has a time factor in its equation, meaning that animating position using lerping, like moving a player or a camera object requires a time value, which has to be kept track of by that object. However, I wanted animations to be handled dynamically and adaptively, without reliance on time. My desired interpolation function should only take a start-destination, end-destination, and return a value that automatically interpolates between the two.
+A common approach is to use what's known as **linear interpolation**, which uses the expression $ A + (B - A) * t $ to calculate where a point in space should be between a start and end destination at a given time. However, there is a way to adapt this the linear interpolation function to be even simpler and easier to work with.
 
 <br/>
 
 **A surprisingly simple solution:**
 
-To interpolate between two values, a function would look something like this
-
+Instead of tracking time explicitly, we can use a function that incrementally moves a value toward another:
 
 ```c
 t_xy	interpolate(int value1, int value2, int slowness)
@@ -337,8 +317,7 @@ t_xy	interpolate(int value1, int value2, int slowness)
 
 <br/>
 
-Applying interpolation can be done in positions as well
-
+This method can be extended to 2D positions as well:
 
 ```c
 t_xy	interpolate(t_xy pos, t_xy pos2, int slowness)
@@ -349,29 +328,65 @@ t_xy	interpolate(t_xy pos, t_xy pos2, int slowness)
 
 <br/>
 
-This kind of interpolation does not require a time value to keep track of. Instead, by simply passing the current position, and the end-destination position, this function returns the interpolated position. 
+How This Works
+Unlike traditional interpolation that depends on a time parameter, this approach simply takes:
+- The current position
+- The target position
+- A slowness factor
+Each time the function is called, it returns a new position slightly closer to the target. To create movement, an object continuously updates its position using this function.
 
-An object that is moving towards a destination using such an interpolation method will have to constantly assign its “current position” to the “interpolated position”, returned by calling this function with the necessary parameters.
+Why This Method is Useful
+- Easing Effect – Unlike standard linear interpolation, this approach naturally slows down as it approaches the target. This form of movement is more natural to the eyes.
+- No Time Tracking Required – Since the interpolation is based on the current position rather than a time factor, it works seamlessly for objects constantly chasing a moving target.
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+typedef struct {
+    float x, y;
+} t_xy;
+
+t_xy interpolate(t_xy pos, t_xy pos2, int slowness) {
+    return (t_xy){pos.x + (pos2.x - pos.x) / slowness, pos.y + (pos2.y - pos.y) / slowness};
+}
+
+float distance(t_xy a, t_xy b) {
+    return sqrtf((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+}
+
+int main() {
+	t_xy enemy = {0, 0};
+	t_xy player = {100, 50};
+	int slowness = 10;
+
+	printf("Enemy starting at (%.2f, %.2f)\n", enemy.x, enemy.y);
+
+	while (distance(enemy, player) > 0.1) {
+		enemy = interpolate(enemy, player, slowness);
+		printf("Enemy at (%.2f, %.2f)\n", enemy.x, enemy.y);
+	}
+
+	printf("Enemy reached the player!\n");
+	return 0;
+}
+```
 
 <br/>
 
 ---
 
-## 📷 Camera tracking
+# 📷 Camera tracking
 
 The illusion of a camera in videogames involves the offsetting of the world. When we think of a static-screen game, the image of a player moving around a static world comes to mind.
 
-<br/>
-
 However, whenever we look at games that utilize camera tracking, there is a typical pattern where the player will always remain at the center of the screen, and the world around the player moves. This concept is how we execute the illusion of a camera; by not actually moving the player, but the objects around it.
 
-<br/>
+This means that all objects in the world are rendered at their positions, however they must be off-\setted using an offset coordinate value. 
 
-This means that all objects in the world are rendered at their positions, however they must be off-setted using an offset coordinate value. 
-
-This offset is determined by the camera, and the coordinates where the world is rendered has an inverse relationship to the position of the camera. If you sit on a train moving to the north, you will see everything in the window moving southward. By moving the camera to the right, the world should move to the left, and vice versa. 
-
-<br/>
+This offset is determined by the camera, and the coordinates where the world is rendered has an inverse relationship to the position of the camera. 
+- If you sit on a train moving to the north, you will see everything in the window moving southward. 
+- By moving the camera to the right, the world move in the opposite direction, and vice versa. 
 
 Using the animation function, I can achieve smooth camera movement.
 
