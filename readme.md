@@ -29,9 +29,7 @@ Interestingly, the requirements for this project were pretty loose. I used it as
 
 # My approach to so_long
 
-<video width="320" height="240" controls>
-  <source src="so_long_demo.mp4" type="video/mp4">
-</video>
+[Watch the video demonstration](so_long_demo.mp4)
 
 I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game. 
 
