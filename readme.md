@@ -378,23 +378,86 @@ int main() {
 
 # 📷 Camera tracking
 
-The illusion of a camera in videogames involves the offsetting of the world. When we think of a static-screen game, the image of a player moving around a static world comes to mind.
+Whenever we look at games that utilize camera tracking, there is a typical pattern where the player will always remain at the center of the screen, and the world around the player moves. This concept is how we execute the illusion of a camera; by not actually moving the player, but the objects around it.
 
-However, whenever we look at games that utilize camera tracking, there is a typical pattern where the player will always remain at the center of the screen, and the world around the player moves. This concept is how we execute the illusion of a camera; by not actually moving the player, but the objects around it.
-
-This means that all objects in the world are rendered at their positions, however they must be off-\setted using an offset coordinate value. 
+This means that all objects in the world are rendered at their positions, however they must be offsetted using an offset coordinate value. 
 
 This offset is determined by the camera, and the coordinates where the world is rendered has an inverse relationship to the position of the camera. 
 - If you sit on a train moving to the north, you will see everything in the window moving southward. 
 - By moving the camera to the right, the world move in the opposite direction, and vice versa. 
 
-Using the animation function, I can achieve smooth camera movement.
-
-Furthermore, I attached the camera’s position to the mouse, so by moving the mouse, the camera move’s towards it to a certain extent.
-
 <br/>
 
-<br/>
+To further understand, let's refer to this game world:   
+
+<div align="center">
+	<img src="Frame 34.png" alt="alt text" width="500"/>
+</div>
+
+<br>
+Now I will introduce the camera. The camera captures a section of the screen. This section is whats shown in the viewport. Currently, the camera and the flower are located at (0, 0), hence both their centerpoints intersect.
+
+<div align="center">
+	<img src="Frame 46.png" alt="alt text" width="500"/>
+</div>
+
+<br>
+The camera moves to the right. Notice that in the viewport, the flower is now at the left.
+<div align="center">
+	<img src="Frame 43.png" alt="alt text" width="500"/>
+</div>
+
+This is a demonstration of the inverse relationship between the camera's position, and that of the objects in the world. The same applies to the vertical axis as well.
+
+For our purposes, camera just needs to be a coordinate. By keeping track of the camera's coordinates, we have a value that can be used to offset the world.
+
+Let's say we render four objects, at the following positions:
+- (300, 200)
+- (600, 450)
+- (1100, 300)
+- (5, 800)
+
+
+<div align="center">
+<img src="Frame 36.png" alt="alt text" width="500"/>
+</div>
+
+<br>
+
+By moving the camera right, the world moves left. Hence, if the camera moves by 300 pixels to the right, all images should be rendered 300 pixels to the left.
+<div align="center">
+<img src="Frame 47.png" alt="alt text" width="500"/>
+</div>
+
+To apply this to our game, we have to further process the positions of objects. We need to convert them to what I will term "viewport coordinates".
+
+To covert the object to viewport coordinates, it's a simple matter of processing it using the following formula:
+
+$$ viewport\space pos = camera.pos - object.pos $$
+
+The final questions to answer is "where should our camera be positioned at?" Well obviously it should focus on the player. 
+
+<div align="center">
+	<img src="Frame 44.png" alt="alt text" width="500"/>
+</div>
+
+At each game update, we may set the camera position to that of the player's, hence the player will always be at the center of the viewport. This makes it so that the player is central to the game, whilst the world around it moves.
+
+But, can take this a step further than simply synchronizing the player and camera's position. We can get the camer to track the player smoothly, using the interpolation function from earlier to smoothen the camera movement. The  `destination` parameter is set to the current position of the player.
+
+```c
+// each game update
+camera_pos = interpolate(camera_pos, player_pos, 4);
+```
+
+This will cause the camera to glide to the player gracefully.
+
+<div align="center">
+	<img src="Frame 45.png" alt="alt text" width="500"/>
+</div>
+
+# conclusion
+
 
 ---
 
