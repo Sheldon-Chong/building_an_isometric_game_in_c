@@ -14,20 +14,18 @@ The conventional approach to this project is to make a flat, 2D grid-based game,
 
 ## My approach to so_long
 
-[Watch the video demonstration](images/so_long_demo.mp4)
+https://github.com/user-attachments/assets/27940a89-dbe1-47da-ba11-e2a3add560e2
 
 Having prior experience with game development, I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game for my project. 
 
 The game features the following:
 
 - **Enemy AI**, designed in a way that would allow the player to remain undetected under certain conditions. 
-
-	- Enemies remain idle and look around until a player falls within an enemy’s line of sight. In such situations, they will become aggravated, and chase after the player.
-
-- **A camera** that smoothly follows the player alongside the position of the mouse.
-
+	- By default, enemies are idle and look around randomly
+ 	- When the player falls within their line of sight, they become agitated, and chase after the player.
+  	- If the player disappears from their line of sight by hiding behind a wall, they return back to normal state.
+- **A camera** that smoothly follows the player alongside, and is offsetted by the position of the mouse.
 - **Isometric appearance:** I designed assets in a form which connects seamlessly along with other tiles on a diagonally angled axis.
-
 	- All calculations done in the engine have to be mapped to diagonal space, before being rendered to the screen.
 
 This article serves as a walkthrough that will explain how I’ve gone about implementing these features.
@@ -36,17 +34,56 @@ This article serves as a walkthrough that will explain how I’ve gone about imp
 
 ## Basic term definitions and distinctions for 2D games (online examples)
 
-| **Side-Scroller** | **Fixed-screen** |
-|-------------------|------------------|
-| ![parallax-scrolling-sonic](images/e8fd4456_parallax-scrolling-sonic.gif) | ![Pacman](images/97a2d46c_Pacman.gif) |
-| Camera follows player, as they traverse through the world | Camera stays in place, or the entire world is viewable without requiring camera to track player |
+<table border="1">
+    <thead>
+        <tr>
+            <th>Side-Scroller</th>
+            <th>Fixed-screen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="images/e8fd4456_parallax-scrolling-sonic.gif" alt="Parallax scrolling Sonic" width="450">
+            </td>
+            <td>
+                <img src="images/97a2d46c_Pacman.gif" alt="Pacman" width="500">
+            </td>
+        </tr>
+        <tr>
+            <td>Camera follows player, as they traverse through the world.</td>
+            <td>Camera stays in place, or the entire world is viewable without requiring the camera to track the player.</td>
+        </tr>
+    </tbody>
+</table>
+
 
 <br/>
 
-| **Isometric rendering** | **Top-down/side-view rendering** |
-|-------------------------|----------------------------------|
-| ![image](images/120178a8_image.png) ![image](images/4e1bbc70_image.png) | ![image](images/301f722b_image.png) ![image](images/f691dab9_image.png) |
-| Tiles are rendered diagonally (or diamond-shaped). Gives the illusion of depth and dimension. | Tiles can typically fit within a square, and are typically drawn from top-to-bottom, left-to-right |
+<table border="1">
+    <thead>
+        <tr>
+            <th>Isometric rendering</th>
+            <th>Top-down/side-view rendering</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="images/120178a8_image.png">
+                <img src="images/4e1bbc70_image.png">
+            </td>
+            <td>
+                <img src="images/301f722b_image.png">
+                <img src="images/f691dab9_image.png">
+            </td>
+        </tr>
+        <tr>
+            <td>Tiles are rendered diagonally (or diamond-shaped). Gives the illusion of depth and dimension.</td>
+            <td>Tiles can typically fit within a square, and are typically drawn from top-to-bottom, left-to-right.</td>
+        </tr>
+    </tbody>
+</table>
 
 <br/>
 
