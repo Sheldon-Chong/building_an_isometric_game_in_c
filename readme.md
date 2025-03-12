@@ -1,6 +1,12 @@
 **By Sheldon Chong**
 11 March 2025
 
+<div align="center">
+
+![image](https://github.com/user-attachments/assets/1e3341cc-20c3-4bb1-b383-49aef9fb6f1b)
+
+</div>
+
 # Building an Isometric Game in C
 
 ## Introduction: What is so_long?
