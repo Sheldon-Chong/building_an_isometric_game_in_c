@@ -316,7 +316,7 @@ However, a property of isometric graphics is that it allows leeway in terms of s
 
 Two types of animation were applied to this project; Frame-by-frame animation and interpolation-based animation
 
-## **Frame-by-Frame Animation**
+## **Frame-by-Frame Animation Example**
 
 In this method, every frame is individually drawn or created. When played in sequence, these frames create the illusion of movement. Below is an example of a sprite-sheet with frame-by-frame animation:
 
@@ -326,11 +326,9 @@ In this method, every frame is individually drawn or created. When played in seq
 
 By: [https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662](images/https://www.deviantart.com/spongedrew250/art/Sonic-Sonic-Running-Sprite-Sheet-920021662)
 
-
 </div>
 
-
-## **Interpolation-Based Animation**
+## **Interpolation-Based Animation Examples**
 
 This method uses algorithms and calculations to smoothly transition an object or character from one position, scale, or rotation to another over time.
 
@@ -340,14 +338,15 @@ This method uses algorithms and calculations to smoothly transition an object or
 
 From: https://github.com/franciscop/ola
 
+This is interpolation in its most basic representation. Using calculations, the position of the circle is moved towards its destination smoothly. This method is commonly used when dealing with rigs or 3D models that consist of joints and connected parts.
+
+<br>
+
 ![ball](images/cd28515d_unnamed.gif)
 
 Source: CyberLegends Animations
 
 </div>
-
-
-This is interpolation in its most basic representation. Using calculations, the position of the circle is moved towards its destination smoothly. This method is commonly used when dealing with rigs or 3D models that consist of joints and connected parts.
 
 In frame-by-frame animation, movement is straightforward: I simply alternate between two frames every second.
 
@@ -513,7 +512,7 @@ This will cause the camera to glide to the player gracefully.
 	<img src="images/Frame 45.png" alt="alt text" width="500"/>
 </div>
 
-# Summary
+# Summary and Conclusion
 
 1. We keep track of the position of all objects in the world via a structs. These are their "true positions"
 2. Each object's position can mapped isometrically by giving a relationship between the x and y, utilizing the iso_map function. This produces their isometric positions
@@ -525,9 +524,11 @@ This will cause the camera to glide to the player gracefully.
 
 ---
 
-![image](images/caddda34_image.png)
 
-[//]: # (link_preview is not supported)
+![image](https://github.com/user-attachments/assets/2724705a-a222-4c56-b91a-1ed6115aceb6)
+![image](https://github.com/user-attachments/assets/acf4077e-4de7-44a9-b096-7bcb438784f3)
+![image](https://github.com/user-attachments/assets/8e2a6947-4b8e-452c-844f-498b25a8dfca)
+
 
 ---
 
