@@ -47,6 +47,8 @@ The conventional approach to this project is to make a flat, 2D grid-based game,
 
 https://github.com/user-attachments/assets/27940a89-dbe1-47da-ba11-e2a3add560e2
 
+see project here: https://github.com/Sheldon-Chong/so_long
+
 Having prior experience with game development, I had the ambitious idea of attempting to make my project a real-time, side-scrolling, stealth-based, isometrically-rendered game for my project. 
 
 The game features the following:
