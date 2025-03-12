@@ -16,19 +16,23 @@ By Sheldon Chong | 12 March 2025
 
 ## Table of contents
 
-1. Building an Isometric Game in C
-	- [Introduction: What is so_long?](#introduction-what-is-so_long)
-	- My approach to so_long
-	- Basic term definitions and distinctions for 2D games (online examples)
-2. 📦 Displaying a grid isometrically
-	- 💡 Basic isometric mapping formula
-	- 🧊 Tiling isometrically
-	- 🎮 Isometric Assets
-3. 🏃 Animations
-	- Frame-by-Frame Animation Example
-	- Interpolation-Based Animation Examples
-4. 📷 Camera tracking
-5. Summary and Conclusion
+1. Building an Isometric Game in C 
+   - [Introduction: What is so_long?](#introduction-what-is-so_long)  
+   - [My approach to so_long](#my-approach-to-so_long)  
+   - [Basic term definitions and distinctions for 2D games (online examples)](#basic-term-definitions-and-distinctions-for-2d-games-online-examples)  
+
+2. [📦 Displaying a grid isometrically](#-displaying-a-grid-isometrically)
+   - [💡 Basic isometric mapping formula](#-basic-isometric-mapping-formula)  
+   - [🧊 Tiling isometrically](#-tiling-isometrically)  
+   - [🎮 Isometric Assets](#-isometric-assets)  
+
+3. [🏃 Animations](#-animations)  
+   - [Frame-by-Frame Animation Example](#frame-by-frame-animation-example)  
+   - [Interpolation-Based Animation Examples](#interpolation-based-animation-examples)  
+
+4. 📷 [Camera tracking](#-camera-tracking)  
+
+5. [Summary and Conclusion](#summary-and-conclusion)  
 
 ## Introduction: What is so_long?
 
