@@ -55,10 +55,10 @@ This article serves as a walkthrough that will explain how I’ve gone about imp
     <tbody>
         <tr>
             <td>
-                <img src="images/e8fd4456_parallax-scrolling-sonic.gif" alt="Parallax scrolling Sonic" width="450">
+                <img src="images/e8fd4456_parallax-scrolling-sonic.gif" alt="Parallax scrolling Sonic">
             </td>
             <td>
-                <img src="images/97a2d46c_Pacman.gif" alt="Pacman" width="500">
+                <img src="images/97a2d46c_Pacman.gif" alt="Pacman">
             </td>
         </tr>
         <tr>
