@@ -14,6 +14,22 @@ By Sheldon Chong | 12 March 2025
 
 (For best veiwing experience, use PC)
 
+## Table of contents
+
+1. Building an Isometric Game in C
+	- [Introduction: What is so_long?](#introduction-what-is-so_long)
+	- My approach to so_long
+	- Basic term definitions and distinctions for 2D games (online examples)
+2. 📦 Displaying a grid isometrically
+	- 💡 Basic isometric mapping formula
+	- 🧊 Tiling isometrically
+	- 🎮 Isometric Assets
+3. 🏃 Animations
+	- Frame-by-Frame Animation Example
+	- Interpolation-Based Animation Examples
+4. 📷 Camera tracking
+5. Summary and Conclusion
+
 ## Introduction: What is so_long?
 
 so_long is one of game-development projects in 42’s Core Program. The objective of so_long is to create a 2D, interactive top-down game, using a lightweight C graphics library called MiniLibX.
