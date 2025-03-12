@@ -524,11 +524,14 @@ This will cause the camera to glide to the player gracefully.
 
 ---
 
+<div align = "center">
 
-![image](https://github.com/user-attachments/assets/2724705a-a222-4c56-b91a-1ed6115aceb6)
-![image](https://github.com/user-attachments/assets/acf4077e-4de7-44a9-b096-7bcb438784f3)
-![image](https://github.com/user-attachments/assets/8e2a6947-4b8e-452c-844f-498b25a8dfca)
+## Follow me here
 
+<img src="https://github.com/user-attachments/assets/dfc8e24f-122a-4d03-9f18-9ed4e464c435" width="300"> 
+<img src="https://github.com/user-attachments/assets/6783bb52-7367-4f96-8fa5-e2919d633655" width="300">
+
+</div>
 
 ---
 
