@@ -2,7 +2,7 @@
 
 <div align="center">
 <h1>Building an Isometric Game in C</h1> 
-By Sheldon Chong | 12 March 2025
+By <a href="https://github.com/Sheldon-Chong">Sheldon Chong</a> | 12 March 2025
 </div>
 
 
