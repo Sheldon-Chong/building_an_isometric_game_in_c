@@ -12,7 +12,7 @@ By Sheldon Chong | 12 March 2025
 
 </div>
 
-
+(For best veiwing experience, use PC)
 
 ## Introduction: What is so_long?
 
