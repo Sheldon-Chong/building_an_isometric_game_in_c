@@ -534,7 +534,7 @@ This will cause the camera to glide to the player gracefully.
 	<img src="images/Frame 45.png" alt="alt text" width="500"/>
 </div>
 
-# Summary and Conclusion
+# Summary
 
 1. We keep track of the position of all objects in the world via a structs. These are their "true positions"
 2. Each object's position can mapped isometrically by giving a relationship between the x and y, utilizing the iso_map function. This produces their isometric positions
@@ -543,6 +543,9 @@ This will cause the camera to glide to the player gracefully.
 <div align="center">
 	<img src="images/Frame 48 (1)-1.png" alt="alt text" width="500"/>
 </div>
+
+# Conclusion
+Of all projects in the 42 Core program, this was definitely the most enjoyable. I actually didn't find it too challenging to implement these features, but it took a lot of effort and time. This was especially the case as I had to figure out how to execute the ideas I had for this game, such as the camera and isometric rendering, as well also designing the assets myself. Every step felt like a rewarding puzzle to solve
 
 ---
 
