@@ -1,13 +1,18 @@
-**By Sheldon Chong**
-11 March 2025
+
+
+<div align="center">
+<h1>Building an Isometric Game in C</h1> 
+By Sheldon Chong | 12 March 2025
+</div>
+
 
 <div align="center">
 
-![image](https://github.com/user-attachments/assets/1e3341cc-20c3-4bb1-b383-49aef9fb6f1b)
+![image](https://github.com/user-attachments/assets/2f77d3c7-c6b4-4ea7-841d-5d14df89d319)
 
 </div>
 
-# Building an Isometric Game in C
+
 
 ## Introduction: What is so_long?
 
